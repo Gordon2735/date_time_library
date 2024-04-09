@@ -2,11 +2,52 @@
 
 'use strict';
 
-function Constructor(date) {
+function Constructor(date, options = {}) {
 	if (!Array.isArray(date)) {
 		date = [date];
 	}
 	this.date = new Date(...date);
+	let settings = Object.assign(
+		{
+			months: [
+				'January',
+				'February',
+				'March',
+				'April',
+				'May',
+				'June',
+				'July',
+				'August',
+				'September',
+				'October',
+				'November',
+				'December'
+			],
+			days: [
+				'Sunday',
+				'Monday',
+				'Tuesday',
+				'Wednesday',
+				'Thursday',
+				'Friday',
+				'Saturday'
+			]
+		},
+		options
+	);
+	Object.freeze(settings);
+	this.settings = settings;
+
+	Object.defineProperties(this, {
+		date: {
+			value: new Date(...date),
+			writable: false
+		},
+		settings: {
+			value: settings,
+			writable: false
+		}
+	});
 }
 
 /**
@@ -15,16 +56,7 @@ function Constructor(date) {
  * @return {String}       The day of the week
  */
 Constructor.prototype.getDay = function () {
-	let days = [
-		'Sunday',
-		'Monday',
-		'Tuesday',
-		'Wednesday',
-		'Thursday',
-		'Friday',
-		'Saturday'
-	];
-	return days[this.date.getDay()];
+	return this.settings.days[this.date.getDay()];
 };
 
 /**
@@ -33,21 +65,7 @@ Constructor.prototype.getDay = function () {
  * @return {String}       The month of the year
  */
 Constructor.prototype.getMonth = function () {
-	let months = [
-		'January',
-		'February',
-		'March',
-		'April',
-		'May',
-		'June',
-		'July',
-		'August',
-		'September',
-		'October',
-		'November',
-		'December'
-	];
-	return months[this.date.getMonth()];
+	return this.settings.months[this.date.getMonth()];
 };
 
 /**
@@ -56,8 +74,10 @@ Constructor.prototype.getMonth = function () {
  * @param {Integer} n    The number of days to add
  */
 Constructor.prototype.addDays = function (n) {
-	this.date.setDate(this.date.getDate() + n);
-	return this;
+	const d = new Date(this.date);
+	d.setDate(d.getDate() + n);
+
+	return new Constructor(d);
 };
 
 /**
@@ -66,9 +86,10 @@ Constructor.prototype.addDays = function (n) {
  * @param {Integer} n    The number of months to add
  */
 Constructor.prototype.addMonths = function (n) {
+	const d = new Date(this.date);
 	this.date.setMonth(this.date.getMonth() + n);
-	Z;
-	return this;
+
+	return new Constructor(d);
 };
 
 /**
@@ -77,9 +98,10 @@ Constructor.prototype.addMonths = function (n) {
  * @param {Integer} n    The number of years to add
  */
 Constructor.prototype.addYears = function (n) {
-	this.date.setFullYear(this.date.getFullYear() + n);
+	const d = new Date(this.date);
+	d.setFullYear(d.getFullYear() + n);
 
-	return this;
+	return new Constructor(d);
 };
 
 export default Constructor;

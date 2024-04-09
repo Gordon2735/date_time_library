@@ -11,6 +11,10 @@
 	},
 	"author": "Gordon R Mullen Jr <webelistics@gmail.com>",
 	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Gordon2735/date_time_library"
+	},
 	"devDependencies": {
 		"rollup": "^4.14.1"
 	}
