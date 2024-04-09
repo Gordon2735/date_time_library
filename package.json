@@ -2,12 +2,12 @@
 	"name": "date_time_library",
 	"version": "1.0.0",
 	"description": "Date/Time Library ",
-	"main": "index.js",
+	"main": "src/js/index.js",
 	"type": "module",
 	"scripts": {
 		"test": "jest",
 		"js": "rollup --config",
-		"start": "live-server --browser=CHROME --port=9080 open=/public/views/index.html"
+		"start": "live-server --browser=CHROME --port=9080 --open=./public/views/index.html"
 	},
 	"author": "Gordon R Mullen Jr <webelistics@gmail.com>",
 	"license": "MIT",

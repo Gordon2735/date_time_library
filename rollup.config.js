@@ -16,9 +16,12 @@ let formats = ['iife', 'es', 'cjs'];
 // and the settings to use for them
 export default formats.map(function (format) {
 	return {
-		input: 'time.js',
+		input: {
+			'src/library/time.js': 'time',
+			'src/js/index.js': 'index'
+		},
 		output: {
-			file: `time.${format}.js`,
+			file: `src/library/time.${format}.js`,
 			format: format,
 			name: 'Time',
 			banner: banner,

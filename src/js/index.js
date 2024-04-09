@@ -1,16 +1,12 @@
-// Application Index.js File
-
 'use strict';
 
-// Create a Date() object for Christmas
-let christmas = new Date('December 25, 2021');
+import Time from '../library/time.js';
 
-// Get some details
-let day = getDay(christmas);
-let month = getMonth(christmas);
+let christmas = new Time([2023, 11, 25]);
+
+let day = christmas.getDay();
+let month = christmas.getMonth();
 console.log(day, month);
 
-// Modify the date
-addDays(christmas, 7);
-addYears(christmas, 1);
-console.log(christmas);
+let newYear = christmas.addDays(7).addYears(1);
+console.log(newYear, newYear.date, christmas);

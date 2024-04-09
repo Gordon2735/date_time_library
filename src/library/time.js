@@ -1,11 +1,20 @@
+// StarGateJS v0.1.0: Time Library
+
 'use strict';
+
+function Constructor(date) {
+	if (!Array.isArray(date)) {
+		date = [date];
+	}
+	this.date = new Date(...date);
+}
 
 /**
  * Get the day of the week
  * @param  {Date}   date  The date object
  * @return {String}       The day of the week
  */
-function getDay(date) {
+Constructor.prototype.getDay = function () {
 	let days = [
 		'Sunday',
 		'Monday',
@@ -15,15 +24,15 @@ function getDay(date) {
 		'Friday',
 		'Saturday'
 	];
-	return days[date.getDay()];
-}
+	return days[this.date.getDay()];
+};
 
 /**
  * Get the month of the year
  * @param  {Date}   date  The date object
  * @return {String}       The month of the year
  */
-function getMonth(date) {
+Constructor.prototype.getMonth = function () {
 	let months = [
 		'January',
 		'February',
@@ -38,32 +47,39 @@ function getMonth(date) {
 		'November',
 		'December'
 	];
-	return months[date.getMonth()];
-}
+	return months[this.date.getMonth()];
+};
 
 /**
  * Add days to a date
  * @param {Date}    date The date object
  * @param {Integer} n    The number of days to add
  */
-function addDays(date, n) {
-	date.setDate(date.getDate() + n);
-}
+Constructor.prototype.addDays = function (n) {
+	this.date.setDate(this.date.getDate() + n);
+	return this;
+};
 
 /**
  * Add months to a date
  * @param {Date}    date The date object
  * @param {Integer} n    The number of months to add
  */
-function addMonths(date, n) {
-	date.setMonth(date.getMonth() + n);
-}
+Constructor.prototype.addMonths = function (n) {
+	this.date.setMonth(this.date.getMonth() + n);
+	Z;
+	return this;
+};
 
 /**
  * Add years to a date
  * @param {Date}    date The date object
  * @param {Integer} n    The number of years to add
  */
-function addYears(date, n) {
-	date.setFullYear(date.getFullYear() + n);
-}
+Constructor.prototype.addYears = function (n) {
+	this.date.setFullYear(this.date.getFullYear() + n);
+
+	return this;
+};
+
+export default Constructor;
