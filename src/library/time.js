@@ -3,52 +3,58 @@
 'use strict';
 
 function Constructor(date, options = {}) {
-	if (!Array.isArray(date)) {
-		date = [date];
-	}
-	this.date = new Date(...date);
-	let settings = Object.assign(
-		{
-			months: [
-				'January',
-				'February',
-				'March',
-				'April',
-				'May',
-				'June',
-				'July',
-				'August',
-				'September',
-				'October',
-				'November',
-				'December'
-			],
-			days: [
-				'Sunday',
-				'Monday',
-				'Tuesday',
-				'Wednesday',
-				'Thursday',
-				'Friday',
-				'Saturday'
-			]
-		},
-		options
-	);
-
-	Object.freeze(settings);
-	this.settings = settings;
-
-	Object.defineProperties(this, {
-		date: {
-			value: new Date(...date),
-			writable: false
-		},
-		settings: {
-			value: settings,
-			writable: false
+	try {
+		if (!Array.isArray(date)) {
+			date = [date];
 		}
-	});
+		this.date = new Date(...date);
+		let settings = Object.assign(
+			{
+				months: [
+					'January',
+					'February',
+					'March',
+					'April',
+					'May',
+					'June',
+					'July',
+					'August',
+					'September',
+					'October',
+					'November',
+					'December'
+				],
+				days: [
+					'Sunday',
+					'Monday',
+					'Tuesday',
+					'Wednesday',
+					'Thursday',
+					'Friday',
+					'Saturday'
+				]
+			},
+			options
+		);
+
+		Object.freeze(settings);
+		this.settings = settings;
+
+		Object.defineProperties(this, {
+			date: {
+				value: new Date(...date),
+				writable: false
+			},
+			settings: {
+				value: settings,
+				writable: false
+			}
+		});
+		return this;
+	} catch (error) {
+		console.error(`Constructor Function try/catch block error: ${error}`);
+		return;
+	}
 }
 
 /**
