@@ -1,7 +1,7 @@
 {
 	"name": "date_time_library",
-	"version": "1.0.0",
-	"description": "Date/Time Library ",
+	"version": "1.0.1",
+	"description": "Date/Time Library | StarGateJS ",
 	"main": "src/js/index.js",
 	"type": "module",
 	"scripts": {
@@ -16,6 +16,8 @@
 		"url": "https://github.com/Gordon2735/date_time_library"
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^25.0.7",
+		"@rollup/plugin-json": "^6.1.0",
 		"rollup": "^4.14.1"
 	}
 }

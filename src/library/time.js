@@ -35,6 +35,7 @@ function Constructor(date, options = {}) {
 		},
 		options
 	);
+
 	Object.freeze(settings);
 	this.settings = settings;
 
@@ -104,4 +105,4 @@ Constructor.prototype.addYears = function (n) {
 	return new Constructor(d);
 };
 
-export default Constructor;
+export { Constructor as default };

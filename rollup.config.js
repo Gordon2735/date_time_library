@@ -1,6 +1,7 @@
 'use strict';
 
-import pkg from './package.json';
+import pkg from './package.json' with { type: 'json' };
+import json from '@rollup/plugin-json';
 
 // The banner to add to the top of each file
 // Pulls details from the package.json file
@@ -16,16 +17,15 @@ let formats = ['iife', 'es', 'cjs'];
 // and the settings to use for them
 export default formats.map(function (format) {
 	return {
-		input: {
-			'src/library/time.js': 'time',
-			'src/js/index.js': 'index'
-		},
+		input: './src/library/time.js',
 		output: {
-			file: `src/library/time.${format}.js`,
+			// dir: `./src/library/`,
+			file: `time.${format}.js`,
 			format: format,
 			name: 'Time',
 			banner: banner,
 			exports: 'auto'
-		}
+		},
+		plugins: [json()]
 	};
 });

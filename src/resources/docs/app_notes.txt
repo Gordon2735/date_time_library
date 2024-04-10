@@ -4,3 +4,9 @@ Notes
 
 2024_04_08_22:06:00
 
+NPM Installs:
+
+npm install --global rollup
+npm install @rollup/plugin-commonjs --save-dev
+npm install @rollup/plugin-json --save-dev
+npm i -D rollup-plugin-import-assert
